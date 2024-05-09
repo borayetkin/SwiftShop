@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577777831835",
+    "project_id": "swiftshopapplication",
+    "storage_bucket": "swiftshopapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577777831835:android:86d68ec9695c5089111b3e",
+        "android_client_info": {
+          "package_name": "com.example.swiftshopapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkv-BVGbOIXe-KqsfjaBw0JBB4enWwl1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
