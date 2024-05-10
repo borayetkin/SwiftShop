@@ -7,4 +7,7 @@
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">click to register</string>
     <string name="logout">logout</string>
+
+    <string name="nav_header_desc">Navigation header description</string>
+
 </resources>
