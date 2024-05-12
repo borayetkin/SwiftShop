@@ -31,8 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
 
-    static String global_email;
-
     @Override
     public void onStart() {
         super.onStart();
@@ -79,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
-                global_email = email;
                 password = String.valueOf(editTextPassword.getText());
 
                 if(TextUtils.isEmpty(email)){

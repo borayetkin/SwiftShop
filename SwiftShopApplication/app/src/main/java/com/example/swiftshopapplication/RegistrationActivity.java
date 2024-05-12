@@ -17,6 +17,7 @@ import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,11 +29,12 @@ import android.widget.Toast;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    TextInputEditText editTextEmail, editTextPassword;
+    TextInputEditText editTextEmail, editTextPassword, editTextUserName;
     Button buttonReg;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
+
 
     @Override
     public void onStart() {
@@ -54,6 +56,8 @@ public class RegistrationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
+        editTextUserName = findViewById(R.id.user_name);
+
         buttonReg = findViewById(R.id.button_register);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
@@ -69,9 +73,10 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-                String email, password;
+                String email, password, userName;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
+                userName = String.valueOf(editTextUserName.getText());
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(RegistrationActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -81,6 +86,10 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(userName)){
+                    Toast.makeText(RegistrationActivity.this, "Enter name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
@@ -88,18 +97,35 @@ public class RegistrationActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(RegistrationActivity.this, "Account created.",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(RegistrationActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(userName)  // userName from the user input
+                                                .build();
 
+                                        user.updateProfile(profileUpdates)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            // Log success or notify user
+                                                            Toast.makeText(RegistrationActivity.this, "Account created and display name set.", Toast.LENGTH_SHORT).show();
+                                                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                                            finish();
+                                                        } else {
+                                                            // Handle errors
+                                                            Toast.makeText(RegistrationActivity.this, "Failed to set display name.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                } else {
+                                    Toast.makeText(RegistrationActivity.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
+
+
 
 
             }

@@ -18,7 +18,16 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default Name"
+        android:layout_centerInParent="true"
+        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
         android:id="@+id/emailTextView"
@@ -26,7 +35,6 @@
         android:layout_height="wrap_content"
         android:text="Default Email"
         android:layout_centerInParent="true"
+        android:textSize="16sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-
 </LinearLayout>

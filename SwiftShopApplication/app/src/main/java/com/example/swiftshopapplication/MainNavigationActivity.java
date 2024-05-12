@@ -25,6 +25,7 @@ public class MainNavigationActivity extends AppCompatActivity {
     private ActivityMainNavigationBinding binding;
 
     private TextView emailTextView;
+    private TextView nameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,12 @@ public class MainNavigationActivity extends AppCompatActivity {
 
         // Use binding to access views directly
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         TextView emailTextView = (TextView) binding.navView.getHeaderView(0).findViewById(R.id.emailTextView);
+        TextView nameTextView = (TextView) binding.navView.getHeaderView(0).findViewById(R.id.nameTextView);
         if (user != null && user.getEmail() != null) {
             emailTextView.setText(user.getEmail());
+            nameTextView.setText(user.getDisplayName());
         } else {
             emailTextView.setText("No Email Available");
         }
