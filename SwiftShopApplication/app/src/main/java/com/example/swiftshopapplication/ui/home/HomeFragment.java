@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
 
     private void initializeRecyclerView() {
         List<Product> products = getProducts(); // This should return your list of products
-        adapter = new ProductsAdapter(products);
+        adapter = new ProductsAdapter(products, getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }

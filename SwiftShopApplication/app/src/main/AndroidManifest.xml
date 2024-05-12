@@ -36,6 +36,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity android:name=".ProductDetailActivity"
+            android:exported="true"
+        android:launchMode="singleTop">
+        </activity>
+
     </application>
 
 </manifest>
