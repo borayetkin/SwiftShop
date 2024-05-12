@@ -3,6 +3,7 @@ package com.example.swiftshopapplication;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -15,11 +16,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.swiftshopapplication.databinding.ActivityMainNavigationBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainNavigationActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainNavigationBinding binding;
+
+    private TextView emailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,16 @@ public class MainNavigationActivity extends AppCompatActivity {
 
         binding = ActivityMainNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Use binding to access views directly
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        TextView emailTextView = (TextView) binding.navView.getHeaderView(0).findViewById(R.id.emailTextView);
+        if (user != null && user.getEmail() != null) {
+            emailTextView.setText(user.getEmail());
+        } else {
+            emailTextView.setText("No Email Available");
+        }
+
 
         setSupportActionBar(binding.appBarMainNavigation.toolbar);
         binding.appBarMainNavigation.fab.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +52,7 @@ public class MainNavigationActivity extends AppCompatActivity {
                         .setAnchorView(R.id.fab).show();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
