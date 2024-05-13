@@ -17,6 +17,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+    <string name="menu_logout">Logout</string>
     <string name="menu_shoppingCart">Shopping Cart</string>
     <string name="menu_Profile">Profile</string>
     <string name="menu_orders">Orders</string>
