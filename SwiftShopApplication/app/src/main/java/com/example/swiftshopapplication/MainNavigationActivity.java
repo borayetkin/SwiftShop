@@ -62,12 +62,16 @@ public class MainNavigationActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.nav_logout) {
             logout();
+        } else {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_navigation);
+            navController.navigate(id); // Navigate based on the item ID
         }
 
         DrawerLayout drawer = binding.drawerLayout;
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
