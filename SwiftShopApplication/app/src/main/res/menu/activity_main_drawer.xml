@@ -20,5 +20,9 @@
             android:id="@+id/nav_orders"
             android:icon="@drawable/orders"
             android:title="@string/menu_orders" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout" />
     </group>
 </menu>
