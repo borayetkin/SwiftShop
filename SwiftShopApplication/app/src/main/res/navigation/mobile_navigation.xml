@@ -13,18 +13,18 @@
 
     <fragment
         android:id="@+id/nav_shoppingCart"
-        android:name="com.example.swiftshopapplication.ui.gallery.GalleryFragment"
+        android:name="com.example.swiftshopapplication.ui.profile.ProfileFragment"
         android:label="@string/menu_shoppingCart"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.swiftshopapplication.ui.slideshow.SlideshowFragment"
+        android:name="com.example.swiftshopapplication.ui.profile.ProfileFragment"
         android:label="@string/menu_Profile"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/nav_orders"
         android:name="com.example.swiftshopapplication.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_orders"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>
