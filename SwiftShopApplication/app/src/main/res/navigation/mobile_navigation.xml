@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_shoppingCart"
-        android:name="com.example.swiftshopapplication.ui.profile.ProfileFragment"
+        android:name="com.example.swiftshopapplication.ui.shoppingcart.ShoppingCartFragment"
         android:label="@string/menu_shoppingCart"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_shopping_cart" />
 
     <fragment
         android:id="@+id/nav_profile"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +33,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         imageView.setImageResource(imageResId);
 
         addToCartButton.setOnClickListener(v -> {
-            // Handle adding product to cart
+            Product product = new Product(name, description, price, imageResId);
+            CartManager.getInstance().addToCart(product);
+            Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
         });
+
     }
 }
