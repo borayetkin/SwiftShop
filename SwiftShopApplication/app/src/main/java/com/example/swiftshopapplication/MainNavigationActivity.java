@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +46,8 @@ public class MainNavigationActivity extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_navigation);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        updateHeaderViews(navigationView);
+
     }
 
     private boolean onNavigationItemSelected(MenuItem item) {
@@ -76,4 +81,20 @@ public class MainNavigationActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_navigation);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
+
+    private void updateHeaderViews(NavigationView navigationView) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        View headerView = navigationView.getHeaderView(0);
+        TextView emailTextView = headerView.findViewById(R.id.emailTextView);
+        TextView nameTextView = headerView.findViewById(R.id.nameTextView);
+
+        if (user != null) {
+            emailTextView.setText(user.getEmail());
+            nameTextView.setText(user.getDisplayName());
+        } else {
+            emailTextView.setText("No Email Available");
+            nameTextView.setText("Anonymous");
+        }
+    }
+
 }
