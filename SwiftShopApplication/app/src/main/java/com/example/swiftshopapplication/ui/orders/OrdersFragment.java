@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftshopapplication.OrdersManager;
 import com.example.swiftshopapplication.ProductsAdapter;
 import com.example.swiftshopapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class OrdersFragment extends Fragment {
 
@@ -22,9 +23,17 @@ public class OrdersFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.ordersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ProductsAdapter(OrdersManager.getInstance().getOrders(), getContext(),false,null));
+        recyclerView.setAdapter(new ProductsAdapter(OrdersManager.getInstance().getOrders(), getContext(), false, null));
 
         return view;
     }
-}
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            OrdersManager.getInstance().loadOrdersFromFirebase();
+        }
+    }
+}
