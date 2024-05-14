@@ -22,7 +22,7 @@ public class OrdersFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.ordersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ProductsAdapter(OrdersManager.getInstance().getOrders(), getContext()));
+        recyclerView.setAdapter(new ProductsAdapter(OrdersManager.getInstance().getOrders(), getContext(),false,null));
 
         return view;
     }
