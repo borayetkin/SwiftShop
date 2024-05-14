@@ -27,15 +27,18 @@ public class ProfileFragment extends Fragment {
 
         final EditText editName = binding.editName;
         final EditText editEmail = binding.editEmail;
+        final EditText editAddress = binding.editAddress;
         Button saveButton = binding.buttonSave;
 
-        profileViewModel.getName().observe(getViewLifecycleOwner(), name -> editName.setText(name));
-        profileViewModel.getEmail().observe(getViewLifecycleOwner(), email -> editEmail.setText(email));
+        profileViewModel.getName().observe(getViewLifecycleOwner(), editName::setText);
+        profileViewModel.getEmail().observe(getViewLifecycleOwner(), editEmail::setText);
+        profileViewModel.getAddress().observe(getViewLifecycleOwner(), editAddress::setText);
 
         saveButton.setOnClickListener(v -> {
             String newName = editName.getText().toString();
             String newEmail = editEmail.getText().toString();
-            profileViewModel.updateUserProfile(newName, newEmail);
+            String newAddress = editAddress.getText().toString();
+            profileViewModel.updateUserProfile(newName, newEmail, newAddress);
         });
 
         return root;

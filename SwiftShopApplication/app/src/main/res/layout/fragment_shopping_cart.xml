@@ -34,6 +34,23 @@
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"/>
 
+    <EditText
+        android:id="@+id/editTextAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your address"
+        android:padding="8dp"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/buttonSaveAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Address"
+        android:layout_marginTop="8dp"
+        android:background="?attr/colorPrimary"
+        android:textColor="#FFFFFF"/>
+
     <Button
         android:id="@+id/buttonAddToOrders"
         android:layout_width="match_parent"

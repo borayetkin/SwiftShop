@@ -1,11 +1,14 @@
 package com.example.swiftshopapplication.ui.shoppingcart;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,9 @@ import com.example.swiftshopapplication.CartManager;
 import com.example.swiftshopapplication.OrdersManager;
 import com.example.swiftshopapplication.ProductsAdapter;
 import com.example.swiftshopapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -20,7 +26,10 @@ public class ShoppingCartFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TextView totalAmountTextView;
+    private EditText editTextAddress;
+    private Button saveAddressButton;
     private Button addToOrdersButton;
+    private DatabaseReference databaseReference;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +41,14 @@ public class ShoppingCartFragment extends Fragment {
         totalAmountTextView = view.findViewById(R.id.totalAmountTextView);
         updateTotal(); // Initial total update
 
+        editTextAddress = view.findViewById(R.id.editTextAddress);
+        saveAddressButton = view.findViewById(R.id.buttonSaveAddress);
         addToOrdersButton = view.findViewById(R.id.buttonAddToOrders);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        saveAddressButton.setOnClickListener(v -> saveAddress());
+
         addToOrdersButton.setOnClickListener(v -> {
             OrdersManager.getInstance().addToOrders(new ArrayList<>(CartManager.getInstance().getCartItems()));
             CartManager.getInstance().clearCart();
@@ -41,6 +57,17 @@ public class ShoppingCartFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void saveAddress() {
+        String address = editTextAddress.getText().toString().trim();
+        if (TextUtils.isEmpty(address)) {
+            Toast.makeText(getContext(), "Please enter an address", Toast.LENGTH_SHORT).show();
+        } else {
+            databaseReference.child("address").setValue(address)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Address saved", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to save address", Toast.LENGTH_SHORT).show());
+        }
     }
 
     private void updateTotal() {
