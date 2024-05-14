@@ -11,16 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.BreakIterator;
 import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
     private List<Product> productList;
     private Context context;
+    private boolean isShoppingCart;
+    private Runnable onUpdateTotal; // Callback to update the total
 
-    public ProductsAdapter(List<Product> productList, Context context) {
+    public ProductsAdapter(List<Product> productList, Context context, boolean isShoppingCart, Runnable onUpdateTotal) {
         this.productList = productList;
         this.context = context;
+        this.isShoppingCart = isShoppingCart;
+        this.onUpdateTotal = onUpdateTotal;
     }
 
     @NonNull
@@ -39,12 +42,19 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         holder.productImage.setImageResource(product.getImageResId());
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ProductDetailActivity.class);
-            intent.putExtra("name", product.getName());
-            intent.putExtra("description", product.getDescription());
-            intent.putExtra("price", product.getPrice());
-            intent.putExtra("imageResId", product.getImageResId());
-            context.startActivity(intent);
+            if (isShoppingCart) {
+                productList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, productList.size());
+                if (onUpdateTotal != null) onUpdateTotal.run(); // Update total after removal
+            } else {
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra("name", product.getName());
+                intent.putExtra("description", product.getDescription());
+                intent.putExtra("price", product.getPrice());
+                intent.putExtra("imageResId", product.getImageResId());
+                context.startActivity(intent);
+            }
         });
     }
 
