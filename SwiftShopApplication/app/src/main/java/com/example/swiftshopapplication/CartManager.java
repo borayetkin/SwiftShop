@@ -25,4 +25,7 @@ public class CartManager {
     public List<Product> getCartItems() {
         return cartItems;
     }
+
+    public void clearCart() { cartItems.clear();
+    }
 }
