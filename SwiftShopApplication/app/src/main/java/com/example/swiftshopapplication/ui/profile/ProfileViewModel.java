@@ -7,15 +7,20 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileViewModel extends ViewModel {
 
     private MutableLiveData<String> mName;
     private MutableLiveData<String> mEmail;
+    private MutableLiveData<String> mAddress;
+    private DatabaseReference databaseReference;
 
     public ProfileViewModel() {
         mName = new MutableLiveData<>();
         mEmail = new MutableLiveData<>();
+        mAddress = new MutableLiveData<>();
         fetchUserData();
     }
 
@@ -24,13 +29,20 @@ public class ProfileViewModel extends ViewModel {
         if (user != null) {
             mName.setValue(user.getDisplayName());
             mEmail.setValue(user.getEmail());
+            databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+            databaseReference.child("address").get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    mAddress.setValue(task.getResult().getValue(String.class));
+                }
+            });
         } else {
             mName.setValue("No User Logged In");
             mEmail.setValue("No Email Available");
+            mAddress.setValue("No Address Available");
         }
     }
 
-    public void updateUserProfile(String name, String email) {
+    public void updateUserProfile(String name, String email, String address) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -50,6 +62,13 @@ public class ProfileViewModel extends ViewModel {
                             mEmail.setValue(email);
                         }
                     });
+
+            databaseReference.child("address").setValue(address)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            mAddress.setValue(address);
+                        }
+                    });
         }
     }
 
@@ -59,5 +78,9 @@ public class ProfileViewModel extends ViewModel {
 
     public LiveData<String> getEmail() {
         return mEmail;
+    }
+
+    public LiveData<String> getAddress() {
+        return mAddress;
     }
 }
