@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Header for the Shopping Cart -->
     <TextView
         android:id="@+id/textViewCartHeader"
         android:layout_width="match_parent"
@@ -17,7 +16,6 @@
         android:gravity="center"
         android:padding="16dp" />
 
-    <!-- RecyclerView for displaying the cart items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartRecyclerView"
         android:layout_width="match_parent"
@@ -25,22 +23,24 @@
         android:layout_weight="1"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <!-- Checkout Button at the bottom -->
-    <Button
-        android:id="@+id/buttonCheckout"
+    <TextView
+        android:id="@+id/totalAmountTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proceed to Checkout"
-        android:layout_marginTop="16dp"
-        android:background="?attr/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Total: $0.00"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
+
     <Button
         android:id="@+id/buttonAddToOrders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Buy the Products"
+        android:layout_marginTop="16dp"
         android:background="?attr/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:text="Buy the Products" />
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>

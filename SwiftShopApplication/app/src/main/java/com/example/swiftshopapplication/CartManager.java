@@ -26,6 +26,19 @@ public class CartManager {
         return cartItems;
     }
 
-    public void clearCart() { cartItems.clear();
+    public void clearCart() {
+        cartItems.clear();
+    }
+
+    public double calculateTotal() {
+        double total = 0;
+        for (Product product : cartItems) {
+            total += product.getPrice();
+        }
+        return total;
+    }
+    public void transferToOrders() {
+        OrdersManager.getInstance().addToOrders(new ArrayList<>(cartItems));
+        clearCart();  // Clear the cart after transferring to orders
     }
 }

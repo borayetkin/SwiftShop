@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.swiftshopapplication.databinding.ActivityMainNavigationBinding;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainNavigationActivity extends AppCompatActivity {
 
@@ -34,14 +31,6 @@ public class MainNavigationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMainNavigation.toolbar);
-        binding.appBarMainNavigation.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -54,8 +43,6 @@ public class MainNavigationActivity extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_navigation);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
-        updateHeaderViews(navigationView);
     }
 
     private boolean onNavigationItemSelected(MenuItem item) {
@@ -64,7 +51,7 @@ public class MainNavigationActivity extends AppCompatActivity {
             logout();
         } else {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main_navigation);
-            navController.navigate(id); // Navigate based on the item ID
+            navController.navigate(id);
         }
 
         DrawerLayout drawer = binding.drawerLayout;
@@ -72,26 +59,10 @@ public class MainNavigationActivity extends AppCompatActivity {
         return true;
     }
 
-
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
-    }
-
-    private void updateHeaderViews(NavigationView navigationView) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        View headerView = navigationView.getHeaderView(0);
-        TextView emailTextView = headerView.findViewById(R.id.emailTextView);
-        TextView nameTextView = headerView.findViewById(R.id.nameTextView);
-
-        if (user != null) {
-            emailTextView.setText(user.getEmail());
-            nameTextView.setText(user.getDisplayName());
-        } else {
-            emailTextView.setText("No Email Available");
-            nameTextView.setText("Anonymous");
-        }
     }
 
     @Override
