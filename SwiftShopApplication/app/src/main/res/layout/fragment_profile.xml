@@ -1,21 +1,29 @@
-<!-- res/layout/fragment_profile.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textName"
+    <EditText
+        android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name Placeholder"
-        android:textSize="18sp"/>
+        android:hint="Name Placeholder"
+        android:textSize="18sp"
+        android:inputType="textPersonName"/>
 
-
-    <TextView
-        android:id="@+id/textEmail"
+    <EditText
+        android:id="@+id/editEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email Placeholder"
-        android:textSize="16sp"/>
+        android:hint="Email Placeholder"
+        android:textSize="16sp"
+        android:inputType="textEmailAddress"/>
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

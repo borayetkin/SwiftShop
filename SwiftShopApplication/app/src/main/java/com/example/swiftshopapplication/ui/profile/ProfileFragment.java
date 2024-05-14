@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,11 +25,19 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView nameTextView = binding.textName;
-        final TextView emailTextView = binding.textEmail;
+        final EditText editName = binding.editName;
+        final EditText editEmail = binding.editEmail;
+        Button saveButton = binding.buttonSave;
 
-        profileViewModel.getName().observe(getViewLifecycleOwner(), nameTextView::setText);
-        profileViewModel.getEmail().observe(getViewLifecycleOwner(), emailTextView::setText);
+        profileViewModel.getName().observe(getViewLifecycleOwner(), name -> editName.setText(name));
+        profileViewModel.getEmail().observe(getViewLifecycleOwner(), email -> editEmail.setText(email));
+
+        saveButton.setOnClickListener(v -> {
+            String newName = editName.getText().toString();
+            String newEmail = editEmail.getText().toString();
+            profileViewModel.updateUserProfile(newName, newEmail);
+        });
+
         return root;
     }
 
