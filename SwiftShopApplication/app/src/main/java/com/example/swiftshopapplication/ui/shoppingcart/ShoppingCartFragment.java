@@ -11,11 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftshopapplication.CartManager;
 import com.example.swiftshopapplication.OrdersManager;
 import com.example.swiftshopapplication.ProductsAdapter;
 import com.example.swiftshopapplication.R;
+import com.example.swiftshopapplication.ui.checkout.CheckoutFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,10 +53,14 @@ public class ShoppingCartFragment extends Fragment {
         saveAddressButton.setOnClickListener(v -> saveAddress());
 
         addToOrdersButton.setOnClickListener(v -> {
+            showCheckoutFragment();
+            /*
             OrdersManager.getInstance().addToOrders(new ArrayList<>(CartManager.getInstance().getCartItems()));
             CartManager.getInstance().clearCart();
             recyclerView.getAdapter().notifyDataSetChanged();
             updateTotal();
+             */
+
         });
 
         return view;
@@ -76,5 +83,16 @@ public class ShoppingCartFragment extends Fragment {
         if (CartManager.getInstance().getCartItems().size() == 0) {
             totalAmountTextView.setText("Cart is empty");
         }
+
     }
+
+    private void showCheckoutFragment() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, new CheckoutFragment());
+        fragmentTransaction.addToBackStack(null); // Optional, if you want to add the transaction to the back stack
+        fragmentTransaction.commit();
+
+    }
+
 }
