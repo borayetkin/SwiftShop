@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         if(user == null){
-            OrdersManager.getInstance().loadOrdersFromFirebase();
+            //OrderManager.getInstance().loadOrdersFromFirebase();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            OrdersManager.getInstance().loadOrdersFromFirebase();
+            //OrdersManager.getInstance().loadOrdersFromFirebase();
         }
     }
 }

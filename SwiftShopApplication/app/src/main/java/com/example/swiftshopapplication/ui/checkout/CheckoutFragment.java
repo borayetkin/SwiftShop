@@ -14,12 +14,21 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.swiftshopapplication.CartManager;
 import com.example.swiftshopapplication.MainNavigationActivity;
-import com.example.swiftshopapplication.OrdersManager;
+import com.example.swiftshopapplication.OrderManager;
 import com.example.swiftshopapplication.R;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,6 +43,7 @@ public class CheckoutFragment extends Fragment {
     private EditText cardExpiryEditText;
     private EditText cardCvvEditText;
     private Button payButton;
+    private DatabaseReference databaseReference;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -58,6 +68,8 @@ public class CheckoutFragment extends Fragment {
         double totalCost = CartManager.getInstance().calculateTotal();
         totalCostTextView.setText(String.format("Total: $%.2f", totalCost));
 
+        retrieveAddress(); // Retrieve the address from Firebase
+
         paymentOptions.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.cashOnDeliveryOption) {
                 creditCardFields.setVisibility(View.GONE); // Hide credit card fields for cash on delivery
@@ -81,9 +93,7 @@ public class CheckoutFragment extends Fragment {
 
                 // Implement logic for credit card payment
             }
-
-            OrdersManager.getInstance().addToOrders(new ArrayList<>(CartManager.getInstance().getCartItems()));
-            CartManager.getInstance().clearCart();
+            createOrder();
 
             if (checkIfPaymentCompleted()) {
                 Toast.makeText(getActivity(), "Payment successful", Toast.LENGTH_SHORT).show();
@@ -100,5 +110,42 @@ public class CheckoutFragment extends Fragment {
     private Boolean checkIfPaymentCompleted() {
         // Implement if the payment is successful or not
         return true;
+    }
+
+    private void createOrder() {
+        System.out.println("AYNUR DAYANIK");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        OrderManager om = new OrderManager(getContext());
+        om.placeOrder(new ArrayList<>(CartManager.getInstance().getCartItems()),
+                deliveryAddressTextView.getText().toString(),
+                totalCostTextView.getText().toString(),
+                false,
+                user.getEmail(),
+                user.getDisplayName());
+
+        CartManager.getInstance().clearCart();
+    }
+
+    private void retrieveAddress() {
+        DatabaseReference addressRef = FirebaseDatabase.getInstance().getReference();
+
+        addressRef.child("address").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String address = dataSnapshot.getValue(String.class);
+                if (address != null) {
+                    // Address retrieved successfully
+                    // Update your UI or do whatever you need with the retrieved address
+                    deliveryAddressTextView.setText(address);
+                } else {
+                    // Address is null, handle this case if necessary
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

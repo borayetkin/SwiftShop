@@ -37,8 +37,4 @@ public class CartManager {
         }
         return total;
     }
-    public void transferToOrders() {
-        OrdersManager.getInstance().addToOrders(new ArrayList<>(cartItems));
-        clearCart();  // Clear the cart after transferring to orders
-    }
 }

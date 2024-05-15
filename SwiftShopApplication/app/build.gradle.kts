@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.recyclerview)
     implementation(libs.firebase.database)
+    implementation(libs.picasso)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

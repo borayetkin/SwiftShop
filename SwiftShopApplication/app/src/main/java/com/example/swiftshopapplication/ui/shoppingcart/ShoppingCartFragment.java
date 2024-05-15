@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.swiftshopapplication.CartManager;
-import com.example.swiftshopapplication.OrdersManager;
 import com.example.swiftshopapplication.ProductsAdapter;
 import com.example.swiftshopapplication.R;
 import com.example.swiftshopapplication.ui.checkout.CheckoutFragment;
