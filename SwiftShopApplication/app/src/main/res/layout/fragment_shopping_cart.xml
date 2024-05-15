@@ -1,63 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewCartHeader"
+    <!-- FrameLayout container for hosting fragments -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Shopping Cart"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="16dp" />
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <!-- Your existing LinearLayout content here -->
+        <LinearLayout
+            android:id="@+id/cartLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <TextView
-        android:id="@+id/totalAmountTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="Total: $0.00"
-        android:padding="8dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
+            <TextView
+                android:id="@+id/textViewCartHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shopping Cart"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="16dp" />
 
-    <EditText
-        android:id="@+id/editTextAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter your address"
-        android:padding="8dp"
-        android:layout_marginTop="16dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cartRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <Button
-        android:id="@+id/buttonSaveAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Address"
-        android:layout_marginTop="8dp"
-        android:background="?attr/colorPrimary"
-        android:textColor="#FFFFFF"/>
+            <TextView
+                android:id="@+id/totalAmountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Total: $0.00"
+                android:padding="8dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"/>
 
-    <Button
-        android:id="@+id/buttonAddToOrders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buy the Products"
-        android:layout_marginTop="16dp"
-        android:background="?attr/colorPrimary"
-        android:textColor="#FFFFFF"/>
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your address"
+                android:padding="8dp"
+                android:layout_marginTop="16dp"/>
+
+            <Button
+                android:id="@+id/buttonSaveAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Address"
+                android:layout_marginTop="8dp"
+                android:background="?attr/colorPrimary"
+                android:textColor="#FFFFFF"/>
+
+            <Button
+                android:id="@+id/buttonAddToOrders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buy the Products"
+                android:layout_marginTop="16dp"
+                android:background="?attr/colorPrimary"
+                android:textColor="#FFFFFF"/>
+
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

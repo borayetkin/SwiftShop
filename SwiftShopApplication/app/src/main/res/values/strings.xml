@@ -23,5 +23,7 @@
     <string name="menu_orders">Orders</string>
     <string name="default_email">Default Email</string>
     <string name="user_name">name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

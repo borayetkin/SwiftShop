@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Total cost -->
+    <TextView
+        android:id="@+id/totalCostTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Cost: $0.00"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="16dp" />
+
+    <!-- Delivery address -->
+    <TextView
+        android:id="@+id/deliveryAddressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Delivery Address will be placed here"
+        android:padding="16dp" />
+
+    <!-- Payment options -->
+    <RadioGroup
+        android:id="@+id/paymentOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Cash on Delivery option -->
+        <RadioButton
+            android:id="@+id/cashOnDeliveryOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cash on Delivery" />
+
+        <!-- Credit Card option -->
+        <RadioButton
+            android:id="@+id/creditCardOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credit Card" />
+
+    </RadioGroup>
+
+    <!-- Credit card input fields -->
+    <LinearLayout
+        android:id="@+id/creditCardFields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/cardNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name on Card"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/cardNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Card Number"
+            android:padding="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/cardExpiryEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Expiry Date (MM/YY)"
+                android:padding="16dp" />
+
+            <EditText
+                android:id="@+id/cardCvvEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="CVV"
+                android:padding="16dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- Pay button -->
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
