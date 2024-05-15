@@ -39,7 +39,7 @@ public class OrderManager {
         System.out.println("ANAN: " + orderId + " " + uid + " " + order.getTotalPrice());
         // Save the order to Firebase using the unique key
         if (orderId != null) {
-            databaseReference.child(uid).child("orders").child(orderId).setValue(order);
+            databaseReference.child("users").child(uid).child("orders").child(orderId).setValue(order);
         }
     }
 }

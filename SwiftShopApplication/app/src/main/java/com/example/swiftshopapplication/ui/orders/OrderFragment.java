@@ -48,7 +48,7 @@ public class OrderFragment extends Fragment {
             String userId = user.getUid();
 
             // Initialize the Firebase database reference to the user's orders
-            databaseReference = FirebaseDatabase.getInstance().getReference().child(userId).child("orders");
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("orders");
 
 
             // Retrieve orders from Firebase and update the list view
