@@ -35,6 +35,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity android:name=".ProductDetailActivity"
