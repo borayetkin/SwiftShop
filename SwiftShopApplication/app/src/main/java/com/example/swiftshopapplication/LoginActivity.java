@@ -36,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+            String userId = mAuth.getCurrentUser().getUid();
+            CartManager.getInstance(userId);
+            OrdersManager.getInstance(userId);
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
