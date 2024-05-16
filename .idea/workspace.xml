@@ -32,15 +32,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3a318c3-a126-4ab1-b384-2cbe6be13bb6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/java/com/example/swiftshopapplication/CartManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/java/com/example/swiftshopapplication/CartManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/java/com/example/swiftshopapplication/ui/shoppingcart/ShoppingCartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/java/com/example/swiftshopapplication/ui/shoppingcart/ShoppingCartFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/layout/fragment_orders.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/layout/fragment_orders.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/layout/fragment_shopping_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/layout/fragment_shopping_cart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SwiftShopApplication/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +43,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\HUAWEI\.android\avd\Pixel_8_Pro_API_VanillaIceCream.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\Ern\.android\avd\Pixel_3a_API_30.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/SwiftShopApplication">
       <ProjectState />
@@ -96,9 +89,10 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/HUAWEI/Documents/GitHub/SwiftShop/SwiftShopApplication/settings.gradle.kts"
+    "last_opened_file_path": "C:/Users/Ern/AndroidStudioProjects/SwiftShop/SwiftShopApplication"
   }
 }]]></component>
   <component name="RunManager" selected="Android App.SwiftShopApplication.app">
