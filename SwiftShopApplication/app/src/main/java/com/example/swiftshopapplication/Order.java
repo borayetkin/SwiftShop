@@ -70,7 +70,7 @@ public class Order {
 
     public String getOrderDetails() {
         String sb = "Buyer Name: " + buyerName + " " +
-                "Buyer Email: " + buyerEmail + " " + "Total Price: " + totalPrice;
+                "Buyer Email: " + buyerEmail + " " + totalPrice;
         return sb;
     }
 }
