@@ -43,9 +43,15 @@ public class HomeFragment extends Fragment {
     private List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Coffee Maker", "Brews great coffee", 59.99, R.drawable.coffee_maker));
-        products.add(new Product("Smartphone", "Latest Android smartphone", 999.99, R.drawable.smartphone));
-        products.add(new Product("Bookshelf", "Spacious and stylish", 149.99, R.drawable.bookshelf));
-        // Add more products with corresponding drawable IDs
+        products.add(new Product("Smartphone", "Latest Android smartphone", 799.99, R.drawable.smartphone));
+        products.add(new Product("Bookshelf", "Spacious and stylish wooden bookshelf", 129.99, R.drawable.bookshelf));
+        products.add(new Product("Bed", "King size luxury bed", 1199.99, R.drawable.bed));
+        products.add(new Product("Fridge", "Energy-efficient double door refrigerator", 899.99, R.drawable.fridge));
+        products.add(new Product("Dining Set", "Elegant dining set with 6 chairs", 699.99, R.drawable.dining_set));
+        products.add(new Product("Laptop", "High performance HP laptop", 1099.99, R.drawable.laptop));
+        products.add(new Product("Shoe", "AJ 1 University Blue High OG", 199.99, R.drawable.shoe));
+        products.add(new Product("Television", "4K Ultra HD Smart LED TV", 499.99, R.drawable.television));
+        products.add(new Product("T-shirt", "Comfortable cotton t-shirt", 29.99, R.drawable.tshirt));
         return products;
     }
 
