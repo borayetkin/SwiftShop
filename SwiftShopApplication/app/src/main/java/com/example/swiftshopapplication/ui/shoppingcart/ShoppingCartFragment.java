@@ -19,6 +19,7 @@ import com.example.swiftshopapplication.ProductsAdapter;
 import com.example.swiftshopapplication.R;
 import com.example.swiftshopapplication.ui.checkout.CheckoutFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -47,18 +48,14 @@ public class ShoppingCartFragment extends Fragment {
         saveAddressButton = view.findViewById(R.id.buttonSaveAddress);
         addToOrdersButton = view.findViewById(R.id.buttonAddToOrders);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
 
         saveAddressButton.setOnClickListener(v -> saveAddress());
 
         addToOrdersButton.setOnClickListener(v -> {
             showCheckoutFragment();
-            /*
-            OrdersManager.getInstance().addToOrders(new ArrayList<>(CartManager.getInstance().getCartItems()));
-            CartManager.getInstance().clearCart();
-            recyclerView.getAdapter().notifyDataSetChanged();
-            updateTotal();
-             */
 
         });
 

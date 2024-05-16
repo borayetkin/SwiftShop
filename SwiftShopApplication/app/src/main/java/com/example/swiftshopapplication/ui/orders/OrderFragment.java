@@ -55,11 +55,7 @@ public class OrderFragment extends Fragment {
             readData(new FirebaseCallback() {
                 @Override
                 public void onCallBack(List<Order> orderList) {
-                    System.out.println("ANaaaaaaaa");
-                    for (int i = 0; i < orderList.size(); i++) {
-                        System.out.println("Babaaaa");
-                        System.out.println(orderList.get(i).getBuyerEmail());
-                    }
+
                 }
             });
 

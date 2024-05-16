@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
         products.add(new Product("Shoe", "AJ 1 University Blue High OG", 199.99, R.drawable.shoe));
         products.add(new Product("Television", "4K Ultra HD Smart LED TV", 499.99, R.drawable.television));
         products.add(new Product("T-shirt", "Comfortable cotton t-shirt", 29.99, R.drawable.tshirt));
+        products.add(new Product("Anabolics", "Grow and shrink at the same time", 2.32, R.drawable.drugs));
         return products;
     }
 
