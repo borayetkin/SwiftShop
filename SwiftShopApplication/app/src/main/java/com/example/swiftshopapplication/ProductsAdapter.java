@@ -29,16 +29,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
         return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.textViewName.setText(product.getName());
-        holder.textViewDescription.setText(product.getDescription());
-        holder.textViewPrice.setText(String.format("$%.2f", product.getPrice()));
+        holder.productName.setText(product.getName());
+        holder.productDescription.setText(product.getDescription());
+        holder.productPrice.setText(String.format("$%.2f", product.getPrice()));
         holder.productImage.setImageResource(product.getImageResId());
 
         holder.itemView.setOnClickListener(v -> {
@@ -48,6 +48,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 notifyItemRangeChanged(position, productList.size());
                 if (onUpdateTotal != null) onUpdateTotal.run(); // Update total after removal
             } else {
+                // Handle item click for non-shopping cart scenario
                 Intent intent = new Intent(context, ProductDetailActivity.class);
                 intent.putExtra("name", product.getName());
                 intent.putExtra("description", product.getDescription());
@@ -64,14 +65,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewName, textViewDescription, textViewPrice;
+        TextView productName, productDescription, productPrice;
         ImageView productImage;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            textViewName = itemView.findViewById(R.id.product_name);
-            textViewDescription = itemView.findViewById(R.id.product_description);
-            textViewPrice = itemView.findViewById(R.id.product_price);
+            productName = itemView.findViewById(R.id.product_name);
+            productDescription = itemView.findViewById(R.id.product_description);
+            productPrice = itemView.findViewById(R.id.product_price);
             productImage = itemView.findViewById(R.id.product_image);
         }
     }

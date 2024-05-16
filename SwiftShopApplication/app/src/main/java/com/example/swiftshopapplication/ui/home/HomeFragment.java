@@ -7,52 +7,50 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.swiftshopapplication.Product;
-import com.example.swiftshopapplication.ProductsAdapter;
+import com.example.swiftshopapplication.Category;
+import com.example.swiftshopapplication.CategoryAdapter;
 import com.example.swiftshopapplication.R;
-import com.example.swiftshopapplication.databinding.FragmentHomeBinding;
+import com.example.swiftshopapplication.ui.products.ProductsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
+public class HomeFragment extends Fragment implements CategoryAdapter.OnCategoryClickListener {
     private RecyclerView recyclerView;
-    private ProductsAdapter adapter;
+    private CategoryAdapter categoryAdapter;
+    private List<Category> categories;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView = binding.productsRecyclerView;
-        initializeRecyclerView();
+        // Initialize categories
+        categories = new ArrayList<>();
+        categories.add(new Category("Clothes", R.drawable.clothes_image));
+        categories.add(new Category("Furniture", R.drawable.furniture_image));
+        categories.add(new Category("Electronics", R.drawable.electronics_image));
+
+        // Initialize RecyclerView
+        recyclerView = root.findViewById(R.id.categories_recycler_view);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        categoryAdapter = new CategoryAdapter(categories, getContext(), this);
+        recyclerView.setAdapter(categoryAdapter);
 
         return root;
     }
 
-    private void initializeRecyclerView() {
-        List<Product> products = getProducts(); // This should return your list of products
-        adapter = new ProductsAdapter(products, getContext(), false,null);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
-    }
-
-    private List<Product> getProducts() {
-        List<Product> products = new ArrayList<>();
-        products.add(new Product("Coffee Maker", "Brews great coffee", 59.99, R.drawable.coffee_maker));
-        products.add(new Product("Smartphone", "Latest Android smartphone", 999.99, R.drawable.smartphone));
-        products.add(new Product("Bookshelf", "Spacious and stylish", 149.99, R.drawable.bookshelf));
-        // Add more products with corresponding drawable IDs
-        return products;
-    }
-
-
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    public void onCategoryClick(Category category) {
+        // Handle category click event
+        // Navigate to ProductsFragment passing the selected category
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, ProductsFragment.newInstance(category.getName()));
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
