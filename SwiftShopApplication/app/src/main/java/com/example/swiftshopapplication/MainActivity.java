@@ -32,12 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         button = findViewById(R.id.logout);
-        menuButton = findViewById(R.id.go_to_menu);  // Initialize the new button
+        menuButton = findViewById(R.id.go_to_menu);
         textView = findViewById(R.id.user_details);
         user = auth.getCurrentUser();
 
         if(user == null){
-            //OrderManager.getInstance().loadOrdersFromFirebase();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
             finish();
@@ -65,12 +64,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-    public void onStart() {
-        super.onStart();
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-            //OrdersManager.getInstance().loadOrdersFromFirebase();
-        }
     }
 }

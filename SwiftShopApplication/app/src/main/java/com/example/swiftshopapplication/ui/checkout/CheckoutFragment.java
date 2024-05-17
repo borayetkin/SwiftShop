@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +20,6 @@ import com.example.swiftshopapplication.CartManager;
 import com.example.swiftshopapplication.MainNavigationActivity;
 import com.example.swiftshopapplication.OrderManager;
 import com.example.swiftshopapplication.R;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +41,6 @@ public class CheckoutFragment extends Fragment {
     private EditText cardExpiryEditText;
     private EditText cardCvvEditText;
     private Button payButton;
-    private DatabaseReference databaseReference;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -64,11 +61,11 @@ public class CheckoutFragment extends Fragment {
         cardCvvEditText = view.findViewById(R.id.cardCvvEditText);
         payButton = view.findViewById(R.id.payButton);
 
-        // Set initial total cost
+        // Setting initial total cost
         double totalCost = CartManager.getInstance().calculateTotal();
         totalCostTextView.setText(String.format("Total: $%.2f", totalCost));
 
-        retrieveAddress(); // Retrieve the address from Firebase
+        retrieveAddress(); // Retrieving the address from Firebase
 
         paymentOptions.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.cashOnDeliveryOption) {
@@ -108,7 +105,6 @@ public class CheckoutFragment extends Fragment {
     }
 
     private Boolean checkIfPaymentCompleted() {
-        // Implement if the payment is successful or not
         return true;
     }
 
@@ -135,10 +131,8 @@ public class CheckoutFragment extends Fragment {
                 String address = dataSnapshot.getValue(String.class);
                 if (address != null) {
                     // Address retrieved successfully
-                    // Update your UI or do whatever you need with the retrieved address
                     deliveryAddressTextView.setText(address);
                 } else {
-                    // Address is null, handle this case if necessary
                 }
             }
 

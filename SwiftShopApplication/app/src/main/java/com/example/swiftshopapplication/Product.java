@@ -1,6 +1,6 @@
 package com.example.swiftshopapplication;
 
-public class Product {
+public class Product{
     private int imageResId; // Resource ID for the image
     private String name;
     private String description;
@@ -17,14 +17,9 @@ public class Product {
         this.price = price;
         this.imageResId = imageResId;
     }
-
     // Getters and Setters
     public int getImageResId() {
         return imageResId;
-    }
-
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
     }
 
     public String getName() {
@@ -39,16 +34,7 @@ public class Product {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getPrice() {
         return price;
     }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
 }

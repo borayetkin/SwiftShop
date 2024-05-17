@@ -21,7 +21,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private RecyclerView recyclerView;
-    private ProductsAdapter adapter;
+    private static ProductsAdapter adapter;
+    private static List<Product> products = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -34,14 +35,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        List<Product> products = getProducts(); // This should return your list of products
-        adapter = new ProductsAdapter(products, getContext(), false,null);
+        if (products.isEmpty()){
+            setProducts();
+        }
+        if (adapter == null){
+            adapter = new ProductsAdapter(products, getContext(), false,null);
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
 
-    private List<Product> getProducts() {
-        List<Product> products = new ArrayList<>();
+    private void setProducts() {
         products.add(new Product("Coffee Maker", "Brews great coffee", 59.99, R.drawable.coffee_maker));
         products.add(new Product("Smartphone", "Latest Android smartphone", 799.99, R.drawable.smartphone));
         products.add(new Product("Bookshelf", "Spacious and stylish wooden bookshelf", 129.99, R.drawable.bookshelf));
@@ -53,7 +57,19 @@ public class HomeFragment extends Fragment {
         products.add(new Product("Television", "4K Ultra HD Smart LED TV", 499.99, R.drawable.television));
         products.add(new Product("T-shirt", "Comfortable cotton t-shirt", 29.99, R.drawable.tshirt));
         products.add(new Product("Anabolics", "Grow and shrink at the same time", 2.32, R.drawable.drugs));
-        return products;
+        sort(true);
+    }
+    public static void sort(Boolean ascending){
+        for (int i = 0; i < products.size(); i++) {
+            for (int j = 0; j < products.size()-i-1; j++) {
+                if (products.get(j).getPrice() > products.get(j+1).getPrice() == ascending) {
+                    Product temp = products.get(j);
+                    products.set(j, products.get(j+1));
+                    products.set(j+1, temp);
+                }
+            }
+        }
+        if (adapter != null) adapter.notifyDataSetChanged();
     }
 
 
