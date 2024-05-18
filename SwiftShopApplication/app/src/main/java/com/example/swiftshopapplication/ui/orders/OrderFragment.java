@@ -7,13 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.swiftshopapplication.Order;
 import com.example.swiftshopapplication.OrderAdapter;
 import com.example.swiftshopapplication.R;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,7 +49,7 @@ public class OrderFragment extends Fragment {
             databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("orders");
 
 
-            // Retrieve orders from Firebase and update the list view
+            // Retrieving orders from Firebase and update the list view
             readData(new FirebaseCallback() {
                 @Override
                 public void onCallBack(List<Order> orderList) {
@@ -60,7 +58,7 @@ public class OrderFragment extends Fragment {
             });
 
 
-            // Retrieve orders from Firebase and update the list view
+            // Retrieving orders from Firebase and update the list view
 
         }
         return view;
@@ -79,8 +77,7 @@ public class OrderFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle errors
+            public void onCancelled(@NonNull DatabaseError databaseError){
             }
         });
     }

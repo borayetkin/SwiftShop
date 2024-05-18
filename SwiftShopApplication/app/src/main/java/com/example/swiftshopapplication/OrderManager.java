@@ -22,14 +22,14 @@ public class OrderManager {
 
     public OrderManager(Context context) {
         this.context = context;
-        // Initialize the Firebase database reference
+        // Initializing the Firebase database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
         orderList = new ArrayList<>();
         orderAdapter = new OrderAdapter(context, orderList);
     }
 
     public void placeOrder(List<Product> productList, String address, String totalPrice, boolean isDelivered, String buyerEmail, String buyerName) {
-        // Create a new Order object
+        // Creating a new Order object
         Order order = new Order(productList, address, totalPrice, isDelivered, buyerEmail, buyerName);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -37,7 +37,7 @@ public class OrderManager {
         String orderId = databaseReference.child(uid).child("orders").push().getKey();
 
         System.out.println("ANAN: " + orderId + " " + uid + " " + order.getTotalPrice());
-        // Save the order to Firebase using the unique key
+        // Saving the order to Firebase using the unique key
         if (orderId != null) {
             databaseReference.child("users").child(uid).child("orders").child(orderId).setValue(order);
         }
