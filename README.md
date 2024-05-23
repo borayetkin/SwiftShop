@@ -19,7 +19,7 @@ SwiftShop is an Android application designed to streamline and enhance the shopp
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/AybarsBugraAksoy/SwiftShop.git
+   git clone https://github.com/borayetkin/SwiftShop.git
 3. **Open Project:
 	-	Launch Android Studio.
 	-	Open the cloned project.
