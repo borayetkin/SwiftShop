@@ -20,13 +20,13 @@ SwiftShop is an Android application designed to streamline and enhance the shopp
 2. **Clone the Repository**:
    ```bash
    git clone https://github.com/borayetkin/SwiftShop.git
-3. **Open Project:
+3. **Open Project**:
 	-	Launch Android Studio.
 	-	Open the cloned project.
-4. **Build the Project:
+4. **Build the Project**:
 	-	Click on the “Elephant” icon to sync the project with Gradle files.
 	-	If issues persist, try re-syncing or re-adding the emulator.
- 5. **Run the Project:
+ 5. **Run the Project**:
 	-	Use an Android emulator or connect an Android device via USB to run the application.
 
 ## Usage
