@@ -15,8 +15,6 @@ SwiftShop is an Android application designed to streamline and enhance the shopp
 1. **Prerequisites**:
    - Ensure you have JDK (Java Development Kit) installed.
    - Install Android Studio and Android SDK.
-   - Set up a Firebase project and add the `google-services.json` file to the app.
-
 2. **Clone the Repository**:
    ```bash
    git clone https://github.com/borayetkin/SwiftShop.git
